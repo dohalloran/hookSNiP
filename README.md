@@ -30,8 +30,8 @@ _A local web app for allele-specific primer design for hookworm_
 
 ### 1) Create a virtualenv & install
 ```bash
-python3 -m venv .venv && . .venv/bin/activate
-pip3 install -r requirements.txt
+python -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ### 2) Fetch example genomes (optional)
