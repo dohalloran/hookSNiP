@@ -1,5 +1,5 @@
 
-# HookSnip 
+# hookSNiP 
 
 hookSNiP: allele-specific primer design for hookworm
 
