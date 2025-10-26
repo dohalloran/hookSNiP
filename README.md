@@ -12,9 +12,8 @@ _A local web app for allele-specific primer design for hookworm_
 
 <p align="center">
   <!-- Replace with a real screenshot or GIF -->
-  ![hookSNiP Screenshot](https://github.com/dohalloran/hookSNiP/blob/main/image.png?raw=true)
+  ![screenshot](https://github.com/dohalloran/hookSNiP/blob/main/image.png?raw=true) 
 </p>
-
 ---
 
 ## ✨ Features
