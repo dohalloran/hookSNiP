@@ -1,0 +1,15 @@
+# FastAPI
+fastapi==0.95.2; python_version < "3.8"
+fastapi>=0.115;  python_version >= "3.8"
+
+# Uvicorn
+uvicorn[standard]==0.22.0; python_version < "3.8"
+uvicorn[standard]>=0.30;    python_version >= "3.8"
+
+# Requests
+requests==2.31.0; python_version < "3.8"
+requests>=2.32;   python_version >= "3.8"
+
+# tqdm
+tqdm==4.66.1;     python_version < "3.8"
+tqdm>=4.66;       python_version >= "3.8"

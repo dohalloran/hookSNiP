@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>hookSNiP</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root { --fg:#111; --muted:#666; --accent:#1f6feb; --bad:#d73a49; --bg:#fafbfc; }
+    body { font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--fg); margin:0; background:#fff; }
+    header { padding:16px 20px; background:var(--bg); border-bottom:1px solid #e5e7eb; }
+    h1 { margin:0; font-size:18px; }
+    main { padding:18px 20px; max-width:1100px; }
+    fieldset { border:1px solid #e5e7eb; border-radius:10px; padding:14px; margin:0 0 16px; }
+    legend { color:#333; font-weight:600; padding:0 6px; }
+    label { display:block; margin:8px 0 6px; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .controls { display:grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap:12px; }
+    input[type="number"]{ width:100%; }
+    input[type="file"], select { width:100%; }
+    .help { color:var(--muted); font-size:12px; }
+    button.primary { background:#111; color:#fff; border:0; border-radius:8px; padding:10px 14px; cursor:pointer; }
+    button.primary:disabled { opacity:.5; cursor:not-allowed; }
+    .hidden{ display:none !important; }
+    #runStatus { margin-left:10px; color:#222; }
+    progress { width:220px; vertical-align: middle; }
+    table { width:100%; border-collapse: collapse; margin-top:12px; }
+    th, td { padding:8px 10px; border-bottom:1px solid #eee; text-align:left; }
+    thead th { background:#f6f8fa; position:sticky; top:0; }
+    code { background:#f6f8fa; padding:2px 6px; border-radius:4px; }
+    .mm { color: var(--accent); font-weight:600; }
+    .alt { color: var(--bad); font-weight:700; }
+    .legend { margin:8px 0 0; color:#333; font-size:12px; }
+    .download { margin-top:14px; }
+  </style>
+</head>
+<body>
+
+  <header>  
+    <h1>hookSNiP: allele-specific primer design for hookworm</h1>
+  </header>
+  <main>
+    <fieldset>
+      <legend>Reference genome</legend>
+      <div class="row">
+        <div>
+          <label><input type="radio" name="srcmode" value="built-in" checked /> Use built-in FASTA</label>
+          <select id="genomeSelect">
+            <option value="ac_prjna72585.fa">Ancylostoma caninum PRJNA72585 (WBPS19)</option>
+            <option value="acey_prjna231479.fa">A. ceylanicum PRJNA231479 (WBPS19)</option>
+            <option value="acey_prjna72583.fa">A. ceylanicum PRJNA72583 (WBPS19)</option>
+          </select>
+          <div class="help">Built-ins served as <code>genomes/*.fa</code> (plain text).</div>
+        </div>
+        <div>
+          <label><input type="radio" name="srcmode" value="custom" /> Use custom FASTA (.fa)</label>
+          <input id="customGenome" type="file" accept=".fa,.fasta,.fna" />
+          <div class="help">No zip/gz; plain <code>.fa</code> only.</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Annotations (GFF/GFF3)</legend>
+      <label for="gffFile">Upload GFF/GFF3 (required)</label>
+      <input id="gffFile" type="file" accept=".gff,.gff3" />
+      <div class="help">Used to infer gene strand.</div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Variants (VCF)</legend>
+      <label for="vcfFile">Upload VCF (.vcf, SNVs)</label>
+      <input id="vcfFile" type="file" accept=".vcf" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Parameters</legend>
+      <div class="controls">
+        <label>Flank (bp)
+          <input id="flank" type="number" min="100" max="1000" step="10" value="300" />
+        </label>
+        <label>Top per allele
+          <input id="topPerAllele" type="number" min="1" max="5" value="1" />
+        </label>
+        <label><input id="insertMismatch" type="checkbox" /> Induce −2 mismatch in LEFT</label>
+      </div>
+      <div class="help">Tm target 60 °C ±4 °C; length 18–25 nt; GC 35–65%; amplicon 120–250 bp; homopolymer ≤5.</div>
+    </fieldset>
+
+    <div>
+      <button id="runBtn" class="primary">Check VCF &amp; Design Primers</button>
+      <progress id="runProgress" max="100" value="0" hidden></progress>
+      <span id="runStatus">Idle.</span>
+    </div>
+
+    <div id="results"></div>
+    <div id="downloadBox" class="download hidden">
+      <button id="downloadHtmlBtn" class="primary">Download primers.html</button>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
