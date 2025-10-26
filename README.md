@@ -19,7 +19,7 @@ _A local web app for allele-specific primer design for hookworm_
 ---
 
 ## ✨ Features
-- Local, private processing — bring your own genomes (FASTA).
+- Local processing — with your own genomes (FASTA).
 - Point the app at your genomes with a single env var: `HOOKSNIP_GENOMES_DIR`.
 - Lightweight web UI served from your machine.
 - No cloud dependencies required.
