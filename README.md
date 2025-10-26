@@ -1,5 +1,5 @@
 # hookSNiP 🧬  
-_A simple local web app for allele-specific primer design for hookworm_
+_A local web app for allele-specific primer design for hookworm_
 
 <p align="center">
   <a href="#license"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
@@ -8,7 +8,7 @@ _A simple local web app for allele-specific primer design for hookworm_
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-success">
 </p>
 
-> **What is it?** `hookSNiP` is a tiny FastAPI app that runs locally and helps you design allele-specific primers against genomes you provide.
+> **What is it?** `hookSNiP` runs locally and helps you design allele-specific primers against hookworm genomes.
 
 <p align="center">
   <!-- Replace with a real screenshot or GIF -->
