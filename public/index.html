@@ -31,6 +31,8 @@
     .alt { color: var(--bad); font-weight:700; }
     .legend { margin:8px 0 0; color:#333; font-size:12px; }
     .download { margin-top:14px; }
+    /* FIX #16: .error class was referenced in app.js but never defined. */
+    #runStatus.error { color: var(--bad); font-weight: 600; }
   </style>
 </head>
 <body>
